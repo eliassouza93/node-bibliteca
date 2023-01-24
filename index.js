@@ -1,21 +1,33 @@
 import * as fs from 'fs';
 
+const textoTeste = ''
+
+function extraiLinks(texto) {
+    const regex = 
+}
+
 
 function trataErro(erro) {
 
     throw new Error(erro, 'Arquivo não encontrado!')
 
 }
+
 //async/await
 
-function pegaArquivo(caminhoDoArquivo){
-    const ecoding = 'utf-8'
-    const texto = fs.promises
-    .readFile(caminhoDoArquivo, ecoding)
-    console.log(texto)
+async function pegaArquivo(caminhoDoArquivo) {
+    try {
+        const ecoding = 'utf-8'
+        const texto = await fs.promises
+            .readFile(caminhoDoArquivo, ecoding)
+        console.log(texto)
 
-    
+    } catch (error) {
+        console.log(error, 'erro caminho não encontrado!!')
+    }
+
 }
+pegaArquivo('./arquivos/texto.md')
 
 
 
@@ -37,7 +49,7 @@ function pegaArquivo(caminhoDoArquivo){
 //
 //       }
 //       console.log(texto)
-//   })
+//   })  \(https?:\/\/[^\s?#.]*        \(https?:\/\/[^\s?#.].[^\s]*\)
 
+// \[[^[\]]*?\]\(https?:\/\/[^\s?#.].[^\s]*\)
 
-pegaArquivo('./arquivos/texto.md')
