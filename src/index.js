@@ -3,28 +3,22 @@ import * as fs from 'fs';
 function extraiLinks(texto) {
     const regex = /\[[^[\]]*?\]\(https?:\/\/[^\s?#.].[^\s]*\)/gm;
     const capturas = [...texto.matchAll(regex)];
-    const resultados = capturas.map(captura => ({ [captura[0]]: captura[1] }))
+    const resultados = capturas.map(captura => ({ [captura[1]]: captura[2] }))
+    return resultados.length !==0 ? resultados : 'não há links'
 
-    return resultados;
 }
-
-function trataErro(erro) {
-    throw new Error(erro.code, 'Arquivo não encontrado!')
-}
-
 //async/await
 
 async function pegaArquivo(caminhoDoArquivo) {
     try {
         const encoding = 'utf-8';
         const texto = await fs.promises.readFile(caminhoDoArquivo, encoding)
-        console.log(extraiLinks(texto))
+        return extraiLinks(texto)
     } catch (erro) {
-        trataErro(erro)
+        console.log(erro)
     }
 }
-
-pegaArquivo('./arquivos/texto.md')
+export default pegaArquivo;
 
 // sempre quando falamos de promisses, estamos falando de codigo assincrono
 //promises com then()

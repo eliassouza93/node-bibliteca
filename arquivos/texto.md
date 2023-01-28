@@ -1,4 +1,4 @@
-Esse é um texto em formado MD
+Esse é um texto em formato MD
 
 A interface File provê informações sobre arquivos e permite ao JavaScript  a acessar seu conteúdo.
 
